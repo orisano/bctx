@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"io"
+	"io/ioutil"
 	"log"
 	"net/url"
 	"os"
@@ -33,10 +34,12 @@ func run() error {
 		Ignore      string
 		Destination string
 		Source      string
+		Dockerfile  string
 	}
 	flag.StringVar(&flags.Ignore, "ignore", "", `.dockerignore path (default "$src/.dockerignore")`)
 	flag.StringVar(&flags.Destination, "dest", "", "destination path, supported gs://, s3:// and dir (required)")
 	flag.StringVar(&flags.Source, "src", ".", "source directory")
+	flag.StringVar(&flags.Dockerfile, "f", "", "override Dockerfile")
 	flag.Parse()
 
 	if flags.Destination == "" {
@@ -64,7 +67,7 @@ func run() error {
 		if err != nil {
 			return xerrors.Errorf("failed to resolve rel path(src=%v, target=%v): %w", flags.Source, outputPath, err)
 		}
-		if !strings.HasPrefix(rel, ".." + string(filepath.Separator)) {
+		if !strings.HasPrefix(rel, ".."+string(filepath.Separator)) {
 			excludes = append(excludes, rel)
 		}
 	}
@@ -78,12 +81,36 @@ func run() error {
 	if strings.HasSuffix(flags.Destination, ".gz") {
 		compress = archive.Gzip
 	}
-
-	buildCtx, err := archive.TarWithOptions(flags.Source, &archive.TarOptions{
+	tarOptions := &archive.TarOptions{
 		ExcludePatterns: excludes,
 		ChownOpts:       &idtools.Identity{UID: 0, GID: 0},
 		Compression:     compress,
-	})
+		IncludeFiles:    []string{"."},
+	}
+	if flags.Dockerfile != "" {
+		d, err := ioutil.ReadFile(flags.Dockerfile)
+		if err != nil {
+			return xerrors.Errorf("failed to read Dockerfile (path=%v): %w", flags.Dockerfile, err)
+		}
+		name, err := ioutil.TempDir(flags.Source, ".")
+		if err != nil {
+			return xerrors.Errorf("failed to create temp dir: %w", err)
+		}
+		defer os.RemoveAll(filepath.Join(flags.Source, name))
+
+		dockerfile := filepath.Join(name, "Dockerfile")
+		tempDockerfile := filepath.Join(flags.Source, dockerfile)
+		if err := ioutil.WriteFile(tempDockerfile, d, 0666); err != nil {
+			return xerrors.Errorf("failed to write temporary Dockerfile (path=%v): %w", tempDockerfile, err)
+		}
+
+		tarOptions.ExcludePatterns = append(tarOptions.ExcludePatterns, "Dockerfile", name)
+		tarOptions.IncludeFiles = append(tarOptions.IncludeFiles, dockerfile)
+		tarOptions.RebaseNames = map[string]string{
+			dockerfile: "Dockerfile",
+		}
+	}
+	buildCtx, err := archive.TarWithOptions(flags.Source, tarOptions)
 	if err != nil {
 		return xerrors.Errorf("failed to prepare archive: %w", err)
 	}
@@ -141,8 +168,8 @@ func writer(dest string) (io.WriteCloser, string, error) {
 				path := strings.TrimPrefix(u.Path, "/")
 				_, err := uploader.UploadWithContext(ctx, &s3manager.UploadInput{
 					Bucket: &u.Host,
-					Key: &path,
-					Body: r,
+					Key:    &path,
+					Body:   r,
 				})
 				_ = r.CloseWithError(err)
 			}()
