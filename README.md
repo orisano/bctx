@@ -9,9 +9,10 @@ go get github.com/orisano/bctx/cmd/bctx
 ## How to use
 ```
 $ bctx -help
-Usage of bctx:
   -dest string
     	destination path, supported gs://, s3:// and dir (required)
+  -f string
+    	override Dockerfile
   -ignore string
     	.dockerignore path (default "$src/.dockerignore")
   -src string
