@@ -462,6 +462,7 @@
     "github.com/docker/docker/pkg/archive",
     "github.com/docker/docker/pkg/idtools",
     "golang.org/x/xerrors",
+    "google.golang.org/api/option",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

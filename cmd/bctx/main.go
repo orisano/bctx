@@ -19,6 +19,7 @@ import (
 	"github.com/docker/docker/pkg/archive"
 	"github.com/docker/docker/pkg/idtools"
 	"golang.org/x/xerrors"
+	"google.golang.org/api/option"
 )
 
 func main() {
@@ -152,7 +153,11 @@ func writer(dest string) (io.WriteCloser, string, error) {
 		}
 		switch u.Scheme {
 		case "gs":
-			storageClient, err := storage.NewClient(ctx)
+			var opts []option.ClientOption
+			if cred := os.Getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON"); cred != "" {
+				opts = append(opts, option.WithCredentialsJSON([]byte(cred)))
+			}
+			storageClient, err := storage.NewClient(ctx, opts...)
 			if err != nil {
 				return nil, "", xerrors.Errorf("failed to create gcs client: %w", err)
 			}
