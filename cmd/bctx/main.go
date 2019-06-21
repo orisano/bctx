@@ -20,6 +20,7 @@ import (
 	"github.com/docker/docker/pkg/idtools"
 	"golang.org/x/xerrors"
 	"google.golang.org/api/option"
+	"github.com/klauspost/pgzip"
 )
 
 func main() {
@@ -63,6 +64,11 @@ func run() error {
 		return xerrors.Errorf("failed to prepare writer: %w", err)
 	}
 	defer w.Close()
+	if strings.HasSuffix(flags.Destination, ".gz") {
+		w = pgzip.NewWriter(w)
+		defer w.Close()
+	}
+
 	if outputPath != "" {
 		rel, err := filepath.Rel(flags.Source, outputPath)
 		if err != nil {
@@ -78,14 +84,9 @@ func run() error {
 		return xerrors.Errorf("failed to validate directory (path=%v): %w", flags.Source, err)
 	}
 
-	var compress archive.Compression
-	if strings.HasSuffix(flags.Destination, ".gz") {
-		compress = archive.Gzip
-	}
 	tarOptions := &archive.TarOptions{
 		ExcludePatterns: excludes,
 		ChownOpts:       &idtools.Identity{UID: 0, GID: 0},
-		Compression:     compress,
 		IncludeFiles:    []string{"."},
 	}
 	if flags.Dockerfile != "" {

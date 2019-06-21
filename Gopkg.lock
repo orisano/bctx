@@ -185,6 +185,30 @@
   revision = "c2b33e84"
 
 [[projects]]
+  digest = "1:2add1a2bd5034733f485898c817d4cf3c767c3a08962ad08cc860dd0e9d73580"
+  name = "github.com/klauspost/compress"
+  packages = ["flate"]
+  pruneopts = "UT"
+  revision = "7a873649b01a9669308e8d58b6bcbbccc0b06b5d"
+  version = "v1.7.1"
+
+[[projects]]
+  digest = "1:923c4d7194b42e054b2eb8a6c62824ac55e23ececc1c7e48d4da69c971c55954"
+  name = "github.com/klauspost/cpuid"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "05a8198c0f5a27739aec358908d7e12c64ce6eb7"
+  version = "v1.2.1"
+
+[[projects]]
+  digest = "1:ce7769e1e6c4180a163da92df483369d689c8849eacfdd24a3cdcbcdc47b8b95"
+  name = "github.com/klauspost/pgzip"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "083b1c3f84dd6486588802e5ce295de3a7f41a8b"
+  version = "v1.2.1"
+
+[[projects]]
   digest = "1:31e761d97c76151dde79e9d28964a812c46efc5baee4085b86f68f0c654450de"
   name = "github.com/konsorten/go-windows-terminal-sequences"
   packages = ["."]
@@ -469,6 +493,7 @@
     "github.com/docker/docker/builder/dockerignore",
     "github.com/docker/docker/pkg/archive",
     "github.com/docker/docker/pkg/idtools",
+    "github.com/klauspost/pgzip",
     "golang.org/x/xerrors",
     "google.golang.org/api/option",
   ]
