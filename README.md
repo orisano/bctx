@@ -19,6 +19,10 @@ $ bctx -help
     	source directory (default ".")
 ```
 
+```
+$ bctx -dest - | tar tv | sort -k3 -r | less
+```
+
 ## Author
 Nao YONASHIRO (@orisano)
 
