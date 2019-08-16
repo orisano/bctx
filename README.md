@@ -5,6 +5,10 @@ bctx is a tool for packing and uploading docker build context.
 ```
 go get github.com/orisano/bctx/cmd/bctx
 ```
+or
+```
+curl -o /usr/local/bin/bctx -SsL $(curl -s https://api.github.com/repos/orisano/bctx/releases/latest | jq -r '.assets[].browser_download_url' | grep darwin) && chmod +x /usr/local/bin/bctx
+```
 
 ## How to use
 ```
