@@ -23,6 +23,7 @@ $ bctx -help
     	source directory (default ".")
 ```
 
+To show files of the build context. (order by size)
 ```
 $ bctx -dest - | tar tv | sort -k3 -r | less
 ```
