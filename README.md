@@ -29,7 +29,7 @@ $ bctx -dest - | tar tv | sort -k3 -r | less
 ```
 
 ## Author
-Nao YONASHIRO (@orisano)
+Nao Yonashiro (@orisano)
 
 ## License
 MIT
