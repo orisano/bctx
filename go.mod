@@ -1,35 +1,23 @@
-module github.com/orisano/bctx
+module github.com/ryan-gerstenkorn-sp/bctx
 
 go 1.14
 
 require (
-	cloud.google.com/go v0.39.0
-	github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78 // indirect
-	github.com/Microsoft/go-winio v0.4.12 // indirect
-	github.com/Microsoft/hcsshim v0.8.6 // indirect
-	github.com/aws/aws-sdk-go v1.20.2
-	github.com/containerd/continuity v0.0.0-20190426062206-aaeac12a7ffc // indirect
-	github.com/docker/cli v0.0.0-20190529205359-f913afa98cd2
-	github.com/docker/docker v0.0.0-20190617184428-882e26a4a883
-	github.com/docker/go-units v0.4.0 // indirect
-	github.com/googleapis/gax-go v1.0.3 // indirect
-	github.com/klauspost/compress v1.7.1 // indirect
-	github.com/klauspost/cpuid v1.2.1 // indirect
-	github.com/klauspost/pgzip v1.2.1
-	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
-	github.com/morikuni/aec v0.0.0-20170113033406-39771216ff4c // indirect
-	github.com/opencontainers/go-digest v1.0.0-rc1 // indirect
+	github.com/Microsoft/hcsshim v0.8.9 // indirect
+	github.com/aws/aws-sdk-go v1.15.11
+	github.com/containerd/continuity v0.0.0-20200413184840-d3ef23f19fbb // indirect
+	github.com/docker/cli v0.0.0-20200528202755-82de74a5e3a7
+	github.com/docker/docker v17.12.0-ce-rc1.0.20200528204242-89382f2f2074+incompatible
+	github.com/jmespath/go-jmespath v0.0.0-20160803190731-bd40a432e4c7 // indirect
+	github.com/moby/sys/mount v0.1.0 // indirect
+	github.com/moby/term v0.0.0-20200507201656-73f35e472e8f // indirect
+	github.com/morikuni/aec v1.0.0 // indirect
+	github.com/opencontainers/go-digest v1.0.0 // indirect
 	github.com/opencontainers/image-spec v1.0.1 // indirect
 	github.com/opencontainers/runc v0.1.1 // indirect
-	github.com/pkg/errors v0.8.1 // indirect
-	github.com/sirupsen/logrus v1.4.2 // indirect
-	go.opencensus.io v0.22.0 // indirect
-	golang.org/x/net v0.0.0-20190613194153-d28f0bde5980 // indirect
-	golang.org/x/sys v0.0.0-20190616124812-15dcb6c0061f // indirect
-	golang.org/x/time v0.0.0-20190308202827-9d24e82272b4 // indirect
-	golang.org/x/xerrors v0.0.0-20190717185122-a985d3407aa7
-	google.golang.org/api v0.6.0
-	google.golang.org/appengine v1.6.1 // indirect
-	google.golang.org/genproto v0.0.0-20190611190212-a7e196e89fd3 // indirect
-	google.golang.org/grpc v1.21.1 // indirect
+	github.com/sirupsen/logrus v1.6.0 // indirect
+	github.com/smartystreets/goconvey v0.0.0-20190330032615-68dc04aab96a // indirect
+	golang.org/x/net v0.0.0-20200528225125-3c3fba18258b // indirect
+	golang.org/x/time v0.0.0-20200416051211-89c76fbcd5d1 // indirect
+	gotest.tools/v3 v3.0.2 // indirect
 )
