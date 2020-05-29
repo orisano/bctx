@@ -15,7 +15,7 @@ clean:
 release: build build/SHA256SUMS
 
 build/bctx-darwin-amd64: $(SRC)
-	GOOS=darwin GOARCH=amd64 go build $(BUILD_FLAGS) -o $@ cmd/**/*.go
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build $(BUILD_FLAGS) -o $@ cmd/**/*.go
 
 build/bctx-linux-amd64: $(SRC)
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build $(BUILD_FLAGS) -o $@ cmd/**/*.go
