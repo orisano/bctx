@@ -3,13 +3,13 @@ name: Go
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    tags-ignore:
+      - v*
 
 jobs:
 
   build:
-    name: Build
+    name: Test
     runs-on: ubuntu-latest
     steps:
 
@@ -31,7 +31,7 @@ jobs:
         fi
 
     - name: Build
-      run: go build -v .
+      run: make release
 
     - name: Test
-      run: go test -v .
+      run: make test

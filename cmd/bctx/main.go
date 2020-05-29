@@ -2,23 +2,18 @@ package main
 
 import (
 	"compress/gzip"
-	"context"
 	"flag"
 	"fmt"
+	"github.com/docker/cli/cli/command/image/build"
+	"github.com/docker/docker/pkg/archive"
+	"github.com/docker/docker/pkg/idtools"
+	"github.com/ryan-gerstenkorn-sp/bctx/bctx"
 	"io"
 	"io/ioutil"
 	"log"
-	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/s3/s3manager"
-	"github.com/docker/cli/cli/command/image/build"
-	"github.com/docker/docker/builder/dockerignore"
-	"github.com/docker/docker/pkg/archive"
-	"github.com/docker/docker/pkg/idtools"
 )
 
 func main() {
@@ -52,12 +47,12 @@ func run() error {
 	if ignore == "" {
 		ignore = filepath.Join(flags.Source, ".dockerignore")
 	}
-	excludes, err := readIgnore(ignore)
+	excludes, err := bctx.ReadIgnore(ignore)
 	if err != nil {
 		return fmt.Errorf("failed to read ignore(path=%v): %w", ignore, err)
 	}
 
-	w, outputPath, err := writer(flags.Destination)
+	w, outputPath, err := bctx.Writer(flags.Destination)
 	if err != nil {
 		return fmt.Errorf("failed to prepare writer: %w", err)
 	}
@@ -124,67 +119,4 @@ func run() error {
 		return fmt.Errorf("failed to close writer: %w", err)
 	}
 	return nil
-}
-
-func readIgnore(p string) ([]string, error) {
-	f, err := os.Open(p)
-	switch {
-	case os.IsNotExist(err):
-		return nil, nil
-	case err != nil:
-		return nil, fmt.Errorf("failed to open: %w", err)
-	}
-	defer f.Close()
-	excludes, err := dockerignore.ReadAll(f)
-	if err != nil {
-		return nil, fmt.Errorf("failed to read: %w", err)
-	}
-	return excludes, nil
-}
-
-func writer(dest string) (io.WriteCloser, string, error) {
-	ctx := context.Background()
-	switch {
-	case strings.HasPrefix(dest, "gs://"), strings.HasPrefix(dest, "s3://"), strings.HasPrefix(dest, "file://"):
-		u, err := url.Parse(dest)
-		if err != nil {
-			return nil, "", fmt.Errorf("failed to parse destination(dest=%v): %w", dest, err)
-		}
-		switch u.Scheme {
-		case "s3":
-			sess, err := session.NewSession()
-			if err != nil {
-				return nil, "", fmt.Errorf("failed to create aws session: %w", err)
-			}
-			r, w := io.Pipe()
-			go func() {
-				uploader := s3manager.NewUploader(sess)
-				path := strings.TrimPrefix(u.Path, "/")
-				_, err := uploader.UploadWithContext(ctx, &s3manager.UploadInput{
-					Bucket: &u.Host,
-					Key:    &path,
-					Body:   r,
-				})
-				_ = r.CloseWithError(err)
-			}()
-			return w, "", nil
-		case "file":
-			p := filepath.FromSlash(u.Path)
-			f, err := os.Create(p)
-			if err != nil {
-				return nil, "", fmt.Errorf("failed to create(path=%v): %w", p, err)
-			}
-			return f, p, nil
-		}
-		panic("unreachable")
-	default:
-		if dest == "-" {
-			return os.Stdout, "", nil
-		}
-		f, err := os.Create(dest)
-		if err != nil {
-			return nil, "", fmt.Errorf("failed to create(dest=%v): %w", dest, err)
-		}
-		return f, dest, nil
-	}
 }
