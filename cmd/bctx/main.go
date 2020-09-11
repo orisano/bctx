@@ -18,9 +18,9 @@ import (
 	"github.com/docker/docker/builder/dockerignore"
 	"github.com/docker/docker/pkg/archive"
 	"github.com/docker/docker/pkg/idtools"
+	"github.com/klauspost/pgzip"
 	"golang.org/x/xerrors"
 	"google.golang.org/api/option"
-	"github.com/klauspost/pgzip"
 )
 
 func main() {
