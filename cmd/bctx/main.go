@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"flag"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -19,7 +20,6 @@ import (
 	"github.com/docker/docker/pkg/archive"
 	"github.com/docker/docker/pkg/idtools"
 	"github.com/klauspost/pgzip"
-	"golang.org/x/xerrors"
 	"google.golang.org/api/option"
 )
 
@@ -56,12 +56,12 @@ func run() error {
 	}
 	excludes, err := readIgnore(ignore)
 	if err != nil {
-		return xerrors.Errorf("failed to read ignore(path=%v): %w", ignore, err)
+		return fmt.Errorf("failed to read ignore(path=%v): %w", ignore, err)
 	}
 
 	w, outputPath, err := writer(flags.Destination)
 	if err != nil {
-		return xerrors.Errorf("failed to prepare writer: %w", err)
+		return fmt.Errorf("failed to prepare writer: %w", err)
 	}
 	defer w.Close()
 	if strings.HasSuffix(flags.Destination, ".gz") {
@@ -72,7 +72,7 @@ func run() error {
 	if outputPath != "" {
 		rel, err := filepath.Rel(flags.Source, outputPath)
 		if err != nil {
-			return xerrors.Errorf("failed to resolve rel path(src=%v, target=%v): %w", flags.Source, outputPath, err)
+			return fmt.Errorf("failed to resolve rel path(src=%v, target=%v): %w", flags.Source, outputPath, err)
 		}
 		if !strings.HasPrefix(rel, ".."+string(filepath.Separator)) {
 			excludes = append(excludes, rel)
@@ -81,7 +81,7 @@ func run() error {
 
 	err = build.ValidateContextDirectory(flags.Source, excludes)
 	if err != nil {
-		return xerrors.Errorf("failed to validate directory (path=%v): %w", flags.Source, err)
+		return fmt.Errorf("failed to validate directory (path=%v): %w", flags.Source, err)
 	}
 
 	tarOptions := &archive.TarOptions{
@@ -92,18 +92,18 @@ func run() error {
 	if flags.Dockerfile != "" {
 		d, err := ioutil.ReadFile(flags.Dockerfile)
 		if err != nil {
-			return xerrors.Errorf("failed to read Dockerfile (path=%v): %w", flags.Dockerfile, err)
+			return fmt.Errorf("failed to read Dockerfile (path=%v): %w", flags.Dockerfile, err)
 		}
 		name, err := ioutil.TempDir(flags.Source, ".")
 		if err != nil {
-			return xerrors.Errorf("failed to create temp dir: %w", err)
+			return fmt.Errorf("failed to create temp dir: %w", err)
 		}
 		defer os.RemoveAll(filepath.Join(flags.Source, name))
 
 		dockerfile := filepath.Join(name, "Dockerfile")
 		tempDockerfile := filepath.Join(flags.Source, dockerfile)
 		if err := ioutil.WriteFile(tempDockerfile, d, 0666); err != nil {
-			return xerrors.Errorf("failed to write temporary Dockerfile (path=%v): %w", tempDockerfile, err)
+			return fmt.Errorf("failed to write temporary Dockerfile (path=%v): %w", tempDockerfile, err)
 		}
 
 		tarOptions.ExcludePatterns = append(tarOptions.ExcludePatterns, "Dockerfile", name)
@@ -114,16 +114,16 @@ func run() error {
 	}
 	buildCtx, err := archive.TarWithOptions(flags.Source, tarOptions)
 	if err != nil {
-		return xerrors.Errorf("failed to prepare archive: %w", err)
+		return fmt.Errorf("failed to prepare archive: %w", err)
 	}
 
 	_, err = io.Copy(w, buildCtx)
 	if err != nil {
-		return xerrors.Errorf("failed to write build context: %w", err)
+		return fmt.Errorf("failed to write build context: %w", err)
 	}
 	err = w.Close()
 	if err != nil {
-		return xerrors.Errorf("failed to close writer: %w", err)
+		return fmt.Errorf("failed to close writer: %w", err)
 	}
 	return nil
 }
@@ -134,12 +134,12 @@ func readIgnore(p string) ([]string, error) {
 	case os.IsNotExist(err):
 		return nil, nil
 	case err != nil:
-		return nil, xerrors.Errorf("failed to open: %w", err)
+		return nil, fmt.Errorf("failed to open: %w", err)
 	}
 	defer f.Close()
 	excludes, err := dockerignore.ReadAll(f)
 	if err != nil {
-		return nil, xerrors.Errorf("failed to read: %w", err)
+		return nil, fmt.Errorf("failed to read: %w", err)
 	}
 	return excludes, nil
 }
@@ -150,7 +150,7 @@ func writer(dest string) (io.WriteCloser, string, error) {
 	case strings.HasPrefix(dest, "gs://"), strings.HasPrefix(dest, "s3://"), strings.HasPrefix(dest, "file://"):
 		u, err := url.Parse(dest)
 		if err != nil {
-			return nil, "", xerrors.Errorf("failed to parse destination(dest=%v): %w", dest, err)
+			return nil, "", fmt.Errorf("failed to parse destination(dest=%v): %w", dest, err)
 		}
 		switch u.Scheme {
 		case "gs":
@@ -160,13 +160,13 @@ func writer(dest string) (io.WriteCloser, string, error) {
 			}
 			storageClient, err := storage.NewClient(ctx, opts...)
 			if err != nil {
-				return nil, "", xerrors.Errorf("failed to create gcs client: %w", err)
+				return nil, "", fmt.Errorf("failed to create gcs client: %w", err)
 			}
 			return storageClient.Bucket(u.Host).Object(strings.TrimPrefix(u.Path, "/")).NewWriter(ctx), "", nil
 		case "s3":
 			sess, err := session.NewSession()
 			if err != nil {
-				return nil, "", xerrors.Errorf("failed to create aws session: %w", err)
+				return nil, "", fmt.Errorf("failed to create aws session: %w", err)
 			}
 			r, w := io.Pipe()
 			go func() {
@@ -184,7 +184,7 @@ func writer(dest string) (io.WriteCloser, string, error) {
 			p := filepath.FromSlash(u.Path)
 			f, err := os.Create(p)
 			if err != nil {
-				return nil, "", xerrors.Errorf("failed to create(path=%v): %w", p, err)
+				return nil, "", fmt.Errorf("failed to create(path=%v): %w", p, err)
 			}
 			return f, p, nil
 		}
@@ -195,7 +195,7 @@ func writer(dest string) (io.WriteCloser, string, error) {
 		}
 		f, err := os.Create(dest)
 		if err != nil {
-			return nil, "", xerrors.Errorf("failed to create(dest=%v): %w", dest, err)
+			return nil, "", fmt.Errorf("failed to create(dest=%v): %w", dest, err)
 		}
 		return f, dest, nil
 	}
