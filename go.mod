@@ -6,7 +6,8 @@ require (
 	cloud.google.com/go v0.101.1 // indirect
 	cloud.google.com/go/storage v1.22.1
 	github.com/Microsoft/go-winio v0.5.2 // indirect
-	github.com/aws/aws-sdk-go v1.44.18
+	github.com/Microsoft/hcsshim v0.9.3 // indirect
+	github.com/aws/aws-sdk-go v1.44.19
 	github.com/containerd/containerd v1.6.4 // indirect
 	github.com/docker/cli v20.10.16+incompatible
 	github.com/docker/docker v20.10.16+incompatible
@@ -18,7 +19,7 @@ require (
 	github.com/moby/sys/mount v0.3.2 // indirect
 	github.com/opencontainers/runc v1.1.2 // indirect
 	golang.org/x/net v0.0.0-20220520000938-2e3eb7b945c2 // indirect
-	golang.org/x/sys v0.0.0-20220519141025-dcacdad47464 // indirect
+	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a // indirect
 	golang.org/x/time v0.0.0-20220411224347-583f2d630306 // indirect
 	golang.org/x/xerrors v0.0.0-20220517211312-f3a8303e98df // indirect
 	google.golang.org/api v0.80.0
