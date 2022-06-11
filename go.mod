@@ -6,7 +6,7 @@ require (
 	cloud.google.com/go v0.102.0 // indirect
 	cloud.google.com/go/storage v1.22.1
 	github.com/Microsoft/go-winio v0.5.2 // indirect
-	github.com/aws/aws-sdk-go v1.44.30
+	github.com/aws/aws-sdk-go v1.44.32
 	github.com/containerd/cgroups v1.0.4 // indirect
 	github.com/containerd/containerd v1.6.6 // indirect
 	github.com/docker/cli v20.10.17+incompatible
@@ -19,8 +19,9 @@ require (
 	github.com/moby/sys/mount v0.3.3 // indirect
 	github.com/opencontainers/runc v1.1.3 // indirect
 	golang.org/x/oauth2 v0.0.0-20220608161450-d0670ef3b1eb // indirect
-	golang.org/x/sys v0.0.0-20220608164250-635b8c9b7f68 // indirect
-	golang.org/x/time v0.0.0-20220411224347-583f2d630306 // indirect
+	golang.org/x/sys v0.0.0-20220610221304-9f5ed59c137d // indirect
+	golang.org/x/time v0.0.0-20220609170525-579cf78fd858 // indirect
+	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f // indirect
 	google.golang.org/api v0.83.0
 	google.golang.org/genproto v0.0.0-20220608133413-ed9918b62aac // indirect
 )
