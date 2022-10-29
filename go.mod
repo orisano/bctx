@@ -3,14 +3,15 @@ module github.com/orisano/bctx
 go 1.15
 
 require (
-	cloud.google.com/go/iam v0.5.0 // indirect
+	cloud.google.com/go/compute v1.11.0 // indirect
+	cloud.google.com/go/iam v0.6.0 // indirect
 	cloud.google.com/go/storage v1.27.0
 	github.com/Microsoft/go-winio v0.6.0 // indirect
-	github.com/aws/aws-sdk-go v1.44.119
+	github.com/aws/aws-sdk-go v1.44.123
 	github.com/containerd/cgroups v1.0.4 // indirect
-	github.com/containerd/containerd v1.6.8 // indirect
-	github.com/docker/cli v20.10.20+incompatible
-	github.com/docker/docker v20.10.20+incompatible
+	github.com/containerd/containerd v1.6.9 // indirect
+	github.com/docker/cli v20.10.21+incompatible
+	github.com/docker/docker v20.10.21+incompatible
 	github.com/docker/go-units v0.5.0 // indirect
 	github.com/golang/snappy v0.0.4-0.20210608040537-544b4180ac70 // indirect
 	github.com/google/martian/v3 v3.3.2 // indirect
@@ -22,9 +23,9 @@ require (
 	github.com/opencontainers/image-spec v1.1.0-rc2 // indirect
 	github.com/opencontainers/runc v1.1.4 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
-	golang.org/x/mod v0.6.0 // indirect
 	golang.org/x/oauth2 v0.1.0 // indirect
 	golang.org/x/time v0.1.0 // indirect
-	google.golang.org/api v0.100.0
-	google.golang.org/genproto v0.0.0-20221018160656-63c7b68cfc55 // indirect
+	golang.org/x/tools v0.2.0 // indirect
+	google.golang.org/api v0.101.0
+	google.golang.org/genproto v0.0.0-20221025140454-527a21cfbd71 // indirect
 )
