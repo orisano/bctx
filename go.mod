@@ -3,13 +3,12 @@ module github.com/orisano/bctx
 go 1.15
 
 require (
-	cloud.google.com/go v0.106.0 // indirect
+	cloud.google.com/go v0.107.0 // indirect
 	cloud.google.com/go/storage v1.28.0
 	github.com/Microsoft/go-winio v0.6.0 // indirect
-	github.com/Microsoft/hcsshim v0.9.5 // indirect
-	github.com/aws/aws-sdk-go v1.44.136
+	github.com/aws/aws-sdk-go v1.44.139
 	github.com/containerd/cgroups v1.0.4 // indirect
-	github.com/containerd/containerd v1.6.9 // indirect
+	github.com/containerd/containerd v1.6.10 // indirect
 	github.com/docker/cli v20.10.21+incompatible
 	github.com/docker/docker v20.10.21+incompatible
 	github.com/docker/go-units v0.5.0 // indirect
@@ -27,5 +26,5 @@ require (
 	golang.org/x/time v0.2.0 // indirect
 	golang.org/x/tools v0.3.0 // indirect
 	google.golang.org/api v0.103.0
-	google.golang.org/genproto v0.0.0-20221111202108-142d8a6fa32e // indirect
+	google.golang.org/genproto v0.0.0-20221116193143-41c2ba794472 // indirect
 )
