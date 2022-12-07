@@ -4,9 +4,10 @@ go 1.15
 
 require (
 	cloud.google.com/go v0.107.0 // indirect
-	cloud.google.com/go/storage v1.28.0
+	cloud.google.com/go/compute/metadata v0.2.2 // indirect
+	cloud.google.com/go/storage v1.28.1
 	github.com/Microsoft/go-winio v0.6.0 // indirect
-	github.com/aws/aws-sdk-go v1.44.145
+	github.com/aws/aws-sdk-go v1.44.152
 	github.com/containerd/cgroups v1.0.4 // indirect
 	github.com/containerd/containerd v1.6.10 // indirect
 	github.com/docker/cli v20.10.21+incompatible
@@ -18,7 +19,7 @@ require (
 	github.com/klauspost/pgzip v1.2.5
 	github.com/moby/buildkit v0.10.6 // indirect
 	github.com/moby/sys/mount v0.3.3 // indirect
-	github.com/moby/term v0.0.0-20221120202655-abb19827d345 // indirect
+	github.com/moby/term v0.0.0-20221128092401-c43b287e0e0f // indirect
 	github.com/opencontainers/image-spec v1.1.0-rc2 // indirect
 	github.com/opencontainers/runc v1.1.4 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
@@ -26,6 +27,6 @@ require (
 	golang.org/x/time v0.2.0 // indirect
 	golang.org/x/tools v0.3.0 // indirect
 	google.golang.org/api v0.103.0
-	google.golang.org/genproto v0.0.0-20221118155620-16455021b5e6 // indirect
+	google.golang.org/genproto v0.0.0-20221202195650-67e5cbc046fd // indirect
 	google.golang.org/grpc v1.51.0 // indirect
 )
