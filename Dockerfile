@@ -1,4 +1,4 @@
-FROM golang:1.17 as build
+FROM golang:1.20 as build
 WORKDIR /go/src/github.com/orisano/bctx
 COPY . .
 RUN go build -o bin/bctx ./cmd/bctx
