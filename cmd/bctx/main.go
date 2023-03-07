@@ -16,10 +16,10 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 	"github.com/docker/cli/cli/command/image/build"
-	"github.com/docker/docker/builder/dockerignore"
 	"github.com/docker/docker/pkg/archive"
 	"github.com/docker/docker/pkg/idtools"
 	"github.com/klauspost/pgzip"
+	"github.com/moby/buildkit/frontend/dockerfile/dockerignore"
 	"google.golang.org/api/option"
 )
 
