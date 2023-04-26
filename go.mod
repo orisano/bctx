@@ -4,12 +4,12 @@ go 1.18
 
 require (
 	cloud.google.com/go/storage v1.30.1
-	github.com/aws/aws-sdk-go v1.44.248
+	github.com/aws/aws-sdk-go v1.44.250
 	github.com/docker/cli v23.0.4+incompatible
 	github.com/docker/docker v23.0.4+incompatible
 	github.com/klauspost/pgzip v1.2.5
 	github.com/moby/buildkit v0.11.6
-	google.golang.org/api v0.119.0
+	google.golang.org/api v0.120.0
 )
 
 require (
