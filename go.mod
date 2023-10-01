@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	cloud.google.com/go/storage v1.33.0
-	github.com/aws/aws-sdk-go v1.45.16
+	github.com/aws/aws-sdk-go v1.45.19
 	github.com/docker/cli v24.0.6+incompatible
 	github.com/docker/docker v24.0.6+incompatible
 	github.com/klauspost/pgzip v1.2.6
