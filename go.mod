@@ -6,12 +6,12 @@ toolchain go1.21.0
 
 require (
 	cloud.google.com/go/storage v1.39.0
-	github.com/aws/aws-sdk-go v1.50.32
-	github.com/docker/cli v25.0.3+incompatible
-	github.com/docker/docker v25.0.3+incompatible
+	github.com/aws/aws-sdk-go v1.50.35
+	github.com/docker/cli v25.0.4+incompatible
+	github.com/docker/docker v25.0.4+incompatible
 	github.com/klauspost/pgzip v1.2.6
 	github.com/moby/buildkit v0.13.0
-	google.golang.org/api v0.168.0
+	google.golang.org/api v0.169.0
 )
 
 require (
@@ -27,7 +27,7 @@ require (
 	github.com/go-logr/logr v1.4.1 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
-	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/s2a-go v0.1.7 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.2 // indirect
@@ -56,9 +56,9 @@ require (
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
-	google.golang.org/genproto v0.0.0-20240304212257-790db918fca8 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240304212257-790db918fca8 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240304212257-790db918fca8 // indirect
+	google.golang.org/genproto v0.0.0-20240308144416-29370a3891b7 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20240308144416-29370a3891b7 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240308144416-29370a3891b7 // indirect
 	google.golang.org/grpc v1.62.1 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 	gotest.tools/v3 v3.4.0 // indirect
