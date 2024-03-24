@@ -6,12 +6,12 @@ toolchain go1.21.0
 
 require (
 	cloud.google.com/go/storage v1.39.1
-	github.com/aws/aws-sdk-go v1.51.2
-	github.com/docker/cli v25.0.4+incompatible
-	github.com/docker/docker v25.0.4+incompatible
+	github.com/aws/aws-sdk-go v1.51.6
+	github.com/docker/cli v26.0.0+incompatible
+	github.com/docker/docker v26.0.0+incompatible
 	github.com/klauspost/pgzip v1.2.6
 	github.com/moby/buildkit v0.13.1
-	google.golang.org/api v0.170.0
+	google.golang.org/api v0.171.0
 )
 
 require (
