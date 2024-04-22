@@ -6,17 +6,17 @@ toolchain go1.21.0
 
 require (
 	cloud.google.com/go/storage v1.40.0
-	github.com/aws/aws-sdk-go v1.51.24
+	github.com/aws/aws-sdk-go v1.51.25
 	github.com/docker/cli v26.0.2+incompatible
 	github.com/docker/docker v26.0.2+incompatible
 	github.com/klauspost/pgzip v1.2.6
 	github.com/moby/buildkit v0.13.1
-	google.golang.org/api v0.174.0
+	google.golang.org/api v0.175.0
 )
 
 require (
 	cloud.google.com/go v0.112.2 // indirect
-	cloud.google.com/go/auth v0.2.1 // indirect
+	cloud.google.com/go/auth v0.2.2 // indirect
 	cloud.google.com/go/auth/oauth2adapt v0.2.1 // indirect
 	cloud.google.com/go/compute/metadata v0.3.0 // indirect
 	cloud.google.com/go/iam v1.1.7 // indirect
