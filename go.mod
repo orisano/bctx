@@ -6,11 +6,11 @@ toolchain go1.22.2
 
 require (
 	cloud.google.com/go/storage v1.43.0
-	github.com/aws/aws-sdk-go v1.55.1
+	github.com/aws/aws-sdk-go v1.55.3
 	github.com/docker/cli v27.1.1+incompatible
 	github.com/docker/docker v27.1.1+incompatible
 	github.com/klauspost/pgzip v1.2.6
-	github.com/moby/buildkit v0.15.0
+	github.com/moby/buildkit v0.15.1
 	google.golang.org/api v0.189.0
 )
 
@@ -19,7 +19,7 @@ require (
 	cloud.google.com/go/auth v0.7.2 // indirect
 	cloud.google.com/go/auth/oauth2adapt v0.2.3 // indirect
 	cloud.google.com/go/compute/metadata v0.5.0 // indirect
-	cloud.google.com/go/iam v1.1.11 // indirect
+	cloud.google.com/go/iam v1.1.12 // indirect
 	github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161 // indirect
 	github.com/containerd/containerd v1.7.20 // indirect
 	github.com/containerd/log v0.1.0 // indirect
@@ -37,7 +37,7 @@ require (
 	github.com/moby/patternmatcher v0.6.0 // indirect
 	github.com/moby/sys/sequential v0.6.0 // indirect
 	github.com/moby/sys/symlink v0.3.0 // indirect
-	github.com/moby/sys/user v0.1.0 // indirect
+	github.com/moby/sys/user v0.2.0 // indirect
 	github.com/moby/term v0.5.0 // indirect
 	github.com/morikuni/aec v1.0.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
@@ -55,9 +55,9 @@ require (
 	golang.org/x/sys v0.22.0 // indirect
 	golang.org/x/text v0.16.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
-	google.golang.org/genproto v0.0.0-20240723171418-e6d459c13d2a // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240723171418-e6d459c13d2a // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240723171418-e6d459c13d2a // indirect
+	google.golang.org/genproto v0.0.0-20240725223205-93522f1f2a9f // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20240725223205-93522f1f2a9f // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f // indirect
 	google.golang.org/grpc v1.65.0 // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
 	gotest.tools/v3 v3.4.0 // indirect
