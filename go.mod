@@ -11,17 +11,17 @@ require (
 	github.com/docker/docker v27.3.1+incompatible
 	github.com/klauspost/pgzip v1.2.6
 	github.com/moby/buildkit v0.16.0
-	google.golang.org/api v0.202.0
+	google.golang.org/api v0.203.0
 )
 
 require (
-	cel.dev/expr v0.17.0 // indirect
+	cel.dev/expr v0.18.0 // indirect
 	cloud.google.com/go v0.116.0 // indirect
 	cloud.google.com/go/auth v0.9.9 // indirect
 	cloud.google.com/go/auth/oauth2adapt v0.2.4 // indirect
 	cloud.google.com/go/compute/metadata v0.5.2 // indirect
-	cloud.google.com/go/iam v1.2.1 // indirect
-	cloud.google.com/go/monitoring v1.21.1 // indirect
+	cloud.google.com/go/iam v1.2.2 // indirect
+	cloud.google.com/go/monitoring v1.21.2 // indirect
 	github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161 // indirect
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.24.3 // indirect
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.48.3 // indirect
@@ -73,7 +73,7 @@ require (
 	google.golang.org/genproto/googleapis/api v0.0.0-20241021214115-324edc3d5d38 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20241021214115-324edc3d5d38 // indirect
 	google.golang.org/grpc v1.67.1 // indirect
-	google.golang.org/grpc/stats/opentelemetry v0.0.0-20241022174616-4bb0170ac65f // indirect
+	google.golang.org/grpc/stats/opentelemetry v0.0.0-20241025232817-cb329375b14e // indirect
 	google.golang.org/protobuf v1.35.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gotest.tools/v3 v3.4.0 // indirect
